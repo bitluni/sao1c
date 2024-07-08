@@ -358,11 +358,11 @@ END GROUP
  *(.debug_frame)
  .debug_frame   0x00000000       0x24 main.o
 
-.debug_str      0x00000000      0x2b6
+.debug_str      0x00000000      0x2b9
  *(.debug_str)
  .debug_str     0x00000000      0x115 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATtiny_DFP/1.10.348/gcc/dev/attiny10/avrtiny/crtattiny10.o
- .debug_str     0x00000115      0x1a1 main.o
-                                0x1d5 (size before relaxing)
+ .debug_str     0x00000115      0x1a4 main.o
+                                0x1d8 (size before relaxing)
 
 .debug_loc      0x00000000      0x433
  *(.debug_loc)

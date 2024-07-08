@@ -23,11 +23,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   9 .debug_frame  00000024  00000000  00000000  000010ac  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000002b6  00000000  00000000  000010d0  2**0
+ 10 .debug_str    000002b9  00000000  00000000  000010d0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000433  00000000  00000000  00001386  2**0
+ 11 .debug_loc    00000433  00000000  00000000  00001389  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000010  00000000  00000000  000017b9  2**0
+ 12 .debug_ranges 00000010  00000000  00000000  000017bc  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -88,7 +88,7 @@ int main(void)
   3c:	60 e0       	ldi	r22, 0x00	; 0
   3e:	01 c0       	rjmp	.+2      	; 0x42 <__SREG__+0x3>
 	    *(p++) = *t;
-		writeGRB8((uint8_t*)0x40);
+		writeGRB8mid((uint8_t*)0x40);
 		_delay_ms(100);
 		i = i + 1;
 		if(i == lineWidth + 1)
@@ -233,7 +233,7 @@ int main(void)
  10c:	f1 0b       	sbc	r31, r17
  10e:	40 81       	ld	r20, Z
  110:	48 ab       	sts	0x58, r20	; 0x800058 <__DATA_REGION_ORIGIN__+0x18>
-inline void writeGRB8(const uint8_t *grb)
+inline void writeGRB8mid(const uint8_t *grb)
 {
 	asm volatile(
  112:	e0 e4       	ldi	r30, 0x40	; 64
@@ -247,7 +247,7 @@ inline void writeGRB8(const uint8_t *grb)
  11e:	22 b9       	out	0x02, r18	; 2
  120:	15 2f       	mov	r17, r21
  122:	12 23       	and	r17, r18
- 124:	12 b9       	out	0x02, r17	; 2
+ 124:	32 b9       	out	0x02, r19	; 2
  126:	55 1f       	adc	r21, r21
  128:	05 2f       	mov	r16, r21
  12a:	32 b9       	out	0x02, r19	; 2
@@ -257,7 +257,7 @@ inline void writeGRB8(const uint8_t *grb)
  132:	22 b9       	out	0x02, r18	; 2
  134:	10 2f       	mov	r17, r16
  136:	12 23       	and	r17, r18
- 138:	12 b9       	out	0x02, r17	; 2
+ 138:	32 b9       	out	0x02, r19	; 2
  13a:	00 1f       	adc	r16, r16
  13c:	00 00       	nop
  13e:	32 b9       	out	0x02, r19	; 2
@@ -267,7 +267,7 @@ inline void writeGRB8(const uint8_t *grb)
  146:	22 b9       	out	0x02, r18	; 2
  148:	10 2f       	mov	r17, r16
  14a:	12 23       	and	r17, r18
- 14c:	12 b9       	out	0x02, r17	; 2
+ 14c:	32 b9       	out	0x02, r19	; 2
  14e:	07 95       	ror	r16
  150:	07 95       	ror	r16
  152:	32 b9       	out	0x02, r19	; 2
@@ -327,7 +327,7 @@ inline void writeGRB8(const uint8_t *grb)
  1be:	22 b9       	out	0x02, r18	; 2
  1c0:	10 2f       	mov	r17, r16
  1c2:	12 23       	and	r17, r18
- 1c4:	12 b9       	out	0x02, r17	; 2
+ 1c4:	32 b9       	out	0x02, r19	; 2
  1c6:	00 1f       	adc	r16, r16
  1c8:	00 00       	nop
  1ca:	32 b9       	out	0x02, r19	; 2
@@ -337,7 +337,7 @@ inline void writeGRB8(const uint8_t *grb)
  1d2:	22 b9       	out	0x02, r18	; 2
  1d4:	10 2f       	mov	r17, r16
  1d6:	12 23       	and	r17, r18
- 1d8:	12 b9       	out	0x02, r17	; 2
+ 1d8:	32 b9       	out	0x02, r19	; 2
  1da:	00 1f       	adc	r16, r16
  1dc:	00 00       	nop
  1de:	32 b9       	out	0x02, r19	; 2
@@ -347,7 +347,7 @@ inline void writeGRB8(const uint8_t *grb)
  1e6:	22 b9       	out	0x02, r18	; 2
  1e8:	10 2f       	mov	r17, r16
  1ea:	12 23       	and	r17, r18
- 1ec:	12 b9       	out	0x02, r17	; 2
+ 1ec:	32 b9       	out	0x02, r19	; 2
  1ee:	07 95       	ror	r16
  1f0:	07 95       	ror	r16
  1f2:	32 b9       	out	0x02, r19	; 2
@@ -407,7 +407,7 @@ inline void writeGRB8(const uint8_t *grb)
  25e:	22 b9       	out	0x02, r18	; 2
  260:	10 2f       	mov	r17, r16
  262:	12 23       	and	r17, r18
- 264:	12 b9       	out	0x02, r17	; 2
+ 264:	32 b9       	out	0x02, r19	; 2
  266:	00 1f       	adc	r16, r16
  268:	00 00       	nop
  26a:	32 b9       	out	0x02, r19	; 2
@@ -417,7 +417,7 @@ inline void writeGRB8(const uint8_t *grb)
  272:	22 b9       	out	0x02, r18	; 2
  274:	10 2f       	mov	r17, r16
  276:	12 23       	and	r17, r18
- 278:	12 b9       	out	0x02, r17	; 2
+ 278:	32 b9       	out	0x02, r19	; 2
  27a:	07 95       	ror	r16
  27c:	00 00       	nop
  27e:	32 b9       	out	0x02, r19	; 2
@@ -427,7 +427,7 @@ inline void writeGRB8(const uint8_t *grb)
  286:	22 b9       	out	0x02, r18	; 2
  288:	10 2f       	mov	r17, r16
  28a:	12 23       	and	r17, r18
- 28c:	12 b9       	out	0x02, r17	; 2
+ 28c:	32 b9       	out	0x02, r19	; 2
  28e:	00 1f       	adc	r16, r16
  290:	00 00       	nop
  292:	32 b9       	out	0x02, r19	; 2
@@ -437,7 +437,7 @@ inline void writeGRB8(const uint8_t *grb)
  29a:	22 b9       	out	0x02, r18	; 2
  29c:	10 2f       	mov	r17, r16
  29e:	12 23       	and	r17, r18
- 2a0:	12 b9       	out	0x02, r17	; 2
+ 2a0:	32 b9       	out	0x02, r19	; 2
  2a2:	07 95       	ror	r16
  2a4:	00 00       	nop
  2a6:	32 b9       	out	0x02, r19	; 2
@@ -500,7 +500,7 @@ inline void writeGRB8(const uint8_t *grb)
  308:	e1 f7       	brne	.-8      	; 0x302 <done8+0x6>
  30a:	00 c0       	rjmp	.+0      	; 0x30c <done8+0x10>
  30c:	00 00       	nop
-		writeGRB8((uint8_t*)0x40);
+		writeGRB8mid((uint8_t*)0x40);
 		_delay_ms(100);
 		i = i + 1;
  30e:	6f 5f       	subi	r22, 0xFF	; 255
