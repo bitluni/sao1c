@@ -7,30 +7,20 @@
 
 #define F_CPU 8000000L
 #include <avr/io.h>
-//#include <avr/interrupt.h>
 #include <util/delay.h>
-
-// ISR(TIM0_OVF_vect){
-
-// }
-
+#include <avr/interrupt.h>
 #include "writeRGB8.h"
+	
+#define lineWidth  42
 
-const uint32_t text[5][4] = {
-{0b01000010, 0b00100010, 0b00000000, 0b00001000},
-{0b00000010, 0b00101111, 0b00000000, 0b00000000},
-{0b01001110, 0b00100010, 0b10010010, 0b00001001},
-{0b01010010, 0b00100010, 0b01010010, 0b00001010},
-{0b01001100, 0b11001100, 0b01001100, 0b00001010},};
-
+const uint8_t text[5][lineWidth] = {
+	{0x00,0x00,0x00,0x00,0x00,  0x38, 0x00, 0x00, 0x00, 0x00,  0x38, 0x00,  0xd0, 0x00, 0x00, 0x00,  0x07, 0x00, 0x00, 0x00,  0x00, 0x00, 0x00, 0x00, 0x00,  0x00, 0x00, 0x00, 0x00, 0x00,  0x38, 0x00,   },
+	{0x00,0x00,0x00,0x00,0x00,  0x39, 0x00, 0x00, 0x00, 0x00,  0x00, 0x00,  0xd8, 0xd0, 0xc0, 0x00,  0x45, 0x00, 0x00, 0x00,  0x00, 0x00, 0x00, 0x00, 0x00,  0x00, 0x00, 0x00, 0x00, 0x00,  0x00, 0x00,   },
+	{0x00,0x00,0x00,0x00,0x00,  0x3a, 0x3b, 0x3c, 0x09, 0x00,  0x70, 0x00,  0xe0, 0x00, 0x00, 0x00,  0x83, 0x00, 0x00, 0x00,  0x41, 0x00, 0x00, 0xc8, 0x00,  0x09, 0x23, 0x2a, 0x08, 0x00,  0xb8, 0x00,   },
+	{0x00,0x00,0x00,0x00,0x00,  0x3b, 0x00, 0x00, 0x3d, 0x00,  0xa0, 0x00,  0xa8, 0x08, 0x00, 0x00,  0x82, 0x41, 0x00, 0x00,  0x42, 0x00, 0x00, 0xc5, 0x00,  0x14, 0x00, 0x00, 0x31, 0x00,  0xd8, 0x00,   },
+	{0x00,0x00,0x00,0x00,0x00,  0x09, 0x3c, 0x3d, 0x09, 0x00,  0xc0, 0x00,  0x00, 0x70, 0x38, 0x00,  0x00, 0xc1, 0xc0, 0x00,  0x01, 0x83, 0x84, 0x40, 0x00,  0x07, 0x00, 0x00, 0x38, 0x00,  0xf8, 0x00,   },};
+//const uint8_t overflow[] = {0,0,0,0,0};
 uint8_t frame[25];
-
-const uint8_t map[5][8] = {
-	{24,23,22,21,20,0,0,0},
-	{15,16,17,18,19,0,0,0},
-	{14,13,12,11,10,0,0,0},
-	 {5, 6, 7, 8, 9,0,0,0},
-	 {4, 3, 2, 1, 0,0,0,0}, };
 
 int main(void)
 {
@@ -45,38 +35,55 @@ int main(void)
 	PORTB = (1<<PORTB2);
 		
     /* Replace with your application code */
-    static uint8_t i = 0;
-	static uint8_t x,y,m,b,t;
+    uint8_t i = 0;
 	while (1) 
     {
-		//background
-		/*for(uint8_t y = 0; y < 5; y++)
-			for(uint8_t x = 0; x < 5; x++)
-				frame[map[x][y]] = (x << 3) + (y) + ((i & 3) << 6);
-*/
-
-		for(y = 0; y < 5; y++)
-			for(uint8_t c = 0; c < 4; c++)
-			{
-				t = text[y][c];
-				for(b = 0; b < 8; b++)
-				{
-					x = ((c * 8 + b) - i) & 31;
-					if(x < 5)
-					{
-						m = map[y][x];
-						if((t & 1) == 1)
-							frame[m] = 0b00001000;
-						else
-							frame[m] = 0b00000000;
-					}
-					t >>= 1;
-				}
-			}
-		i++;
+		i = i + 1;
+		if(i == lineWidth)
+		i = 0;		
 		
-		//writeGRB8(matrixB8);
+		uint8_t *p = (uint8_t*)frame;
+		//uint8_t *t = (uint8_t*)&(text[0][i]);
+		/*for(uint8_t y = 0; y < 5; y++)
+		{
+			*(p++) = 1;
+			*(p++) = 8;
+			*(p++) = 1;
+			*(p++) = 8;
+			*(p++) = 1;
+			//t += lineWidth - 5;
+		}*/
+		uint8_t *t = (uint8_t*)&(text[4][4 + i]);
+		*(p++) = *(t--);
+		*(p++) = *(t--);
+		*(p++) = *(t--);
+		*(p++) = *(t--);
+		*(p++) = *t;
+		t -= lineWidth;
+		*(p++) = *(t++);
+		*(p++) = *(t++);
+		*(p++) = *(t++);
+		*(p++) = *(t++);
+		*(p++) = *t;
+		t -= lineWidth;
+		*(p++) = *(t--);
+		*(p++) = *(t--);
+		*(p++) = *(t--);
+		*(p++) = *(t--);
+		*(p++) = *t;
+		t -= lineWidth;
+		*(p++) = *(t++);
+		*(p++) = *(t++);
+		*(p++) = *(t++);
+		*(p++) = *(t++);
+		*(p++) = *t;
+		t -= lineWidth;
+		*(p++) = *(t--);
+		*(p++) = *(t--);
+		*(p++) = *(t--);
+		*(p++) = *(t--);
+		// *(p++) = *t;
 		writeGRB8(frame);
-		_delay_ms(100);
+		_delay_ms(50);
     }
 }

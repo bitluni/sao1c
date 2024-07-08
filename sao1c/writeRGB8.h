@@ -6,7 +6,7 @@ inline void writeGRB8(const uint8_t *grb)
 	"ldi  r18, 4"				"\n"
 	"ld   r21, %a[ptr]+"		"\n"	//cbbrrrggg
 	"byteLoop8:"				"\n"
-	
+//g0
 	"out  %[port], r18"			"\n"
 	"mov  r17, r21"				"\n"
 	"and  r17, r18"				"\n"
@@ -17,7 +17,7 @@ inline void writeGRB8(const uint8_t *grb)
 	"nop"						"\n"
 	"nop"						"\n"
 	"nop"						"\n"
-
+//g1
 	"out  %[port] , r18"		"\n"
 	"mov  r17, r16"				"\n"
 	"and  r17, r18"				"\n"
@@ -28,7 +28,7 @@ inline void writeGRB8(const uint8_t *grb)
 	"nop"						"\n"
 	"nop"						"\n"
 	"nop"						"\n"
-
+//g2
 	"out  %[port] , r18"		"\n"
 	"mov  r17, r16"				"\n"
 	"and  r17, r18"				"\n"
@@ -39,7 +39,7 @@ inline void writeGRB8(const uint8_t *grb)
 	"nop"						"\n"
 	"nop"						"\n"
 	"nop"						"\n"
-
+//g3
 	"out  %[port] , r18"		"\n"
 	"mov  r17, r16"				"\n"
 	"and  r17, r18"				"\n"
@@ -50,7 +50,7 @@ inline void writeGRB8(const uint8_t *grb)
 	"nop"						"\n"
 	"nop"						"\n"
 	"nop"						"\n"
-
+//g4
 	"out  %[port] , r18"		"\n"
 	"mov  r17, r16"				"\n"
 	"and  r17, r18"				"\n"
@@ -61,7 +61,7 @@ inline void writeGRB8(const uint8_t *grb)
 	"nop"						"\n"
 	"nop"						"\n"
 	"nop"						"\n"
-
+//g5
 	"out  %[port] , r18"		"\n"
 	"mov  r17, r16"				"\n"
 	"and  r17, r18"				"\n"
@@ -72,7 +72,7 @@ inline void writeGRB8(const uint8_t *grb)
 	"nop"						"\n"
 	"nop"						"\n"
 	"nop"						"\n"
-
+//g6
 	"out  %[port] , r18"		"\n"
 	"mov  r17, r16"				"\n"
 	"and  r17, r18"				"\n"
@@ -83,7 +83,7 @@ inline void writeGRB8(const uint8_t *grb)
 	"nop"						"\n"
 	"nop"						"\n"
 	"nop"						"\n"
-	
+//g7
 	"out  %[port] , r18"		"\n"
 	"mov  r17, r16"				"\n"
 	"and  r17, r18"				"\n"
@@ -95,6 +95,7 @@ inline void writeGRB8(const uint8_t *grb)
 	"ror  r16"					"\n"	//gggcbbrrr
 	"nop"						"\n"
 //red
+//r0
 	"out  %[port] , r18"		"\n"
 	"mov  r17, r16"				"\n"
 	"and  r17, r18"				"\n"
@@ -105,7 +106,7 @@ inline void writeGRB8(const uint8_t *grb)
 	"nop"						"\n"
 	"nop"						"\n"
 	"nop"						"\n"
-
+//r1
 	"out  %[port] , r18"		"\n"
 	"mov  r17, r16"				"\n"
 	"and  r17, r18"				"\n"
@@ -116,7 +117,7 @@ inline void writeGRB8(const uint8_t *grb)
 	"nop"						"\n"
 	"nop"						"\n"
 	"nop"						"\n"
-
+//r2
 	"out  %[port] , r18"		"\n"
 	"mov  r17, r16"				"\n"
 	"and  r17, r18"				"\n"
@@ -127,7 +128,7 @@ inline void writeGRB8(const uint8_t *grb)
 	"nop"						"\n"
 	"nop"						"\n"
 	"nop"						"\n"
-
+//r3
 	"out  %[port] , r18"		"\n"
 	"mov  r17, r16"				"\n"
 	"and  r17, r18"				"\n"
@@ -138,7 +139,7 @@ inline void writeGRB8(const uint8_t *grb)
 	"nop"						"\n"
 	"nop"						"\n"
 	"nop"						"\n"
-
+//r4
 	"out  %[port] , r18"		"\n"
 	"mov  r17, r16"				"\n"
 	"and  r17, r18"				"\n"
@@ -149,7 +150,7 @@ inline void writeGRB8(const uint8_t *grb)
 	"nop"						"\n"
 	"nop"						"\n"
 	"nop"						"\n"
-
+//r5
 	"out  %[port] , r18"		"\n"
 	"mov  r17, r16"				"\n"
 	"and  r17, r18"				"\n"
@@ -160,7 +161,7 @@ inline void writeGRB8(const uint8_t *grb)
 	"nop"						"\n"
 	"nop"						"\n"
 	"nop"						"\n"
-
+//r6
 	"out  %[port] , r18"		"\n"
 	"mov  r17, r16"				"\n"
 	"and  r17, r18"				"\n"
@@ -171,7 +172,7 @@ inline void writeGRB8(const uint8_t *grb)
 	"nop"						"\n"
 	"nop"						"\n"
 	"nop"						"\n"
-	
+//r7	
 	"out  %[port] , r18"		"\n"
 	"mov  r17, r16"				"\n"
 	"and  r17, r18"				"\n"
@@ -183,6 +184,7 @@ inline void writeGRB8(const uint8_t *grb)
 	"nop"						"\n"
 	"nop"						"\n"
 //blue
+//b0
 	"out  %[port] , r18"		"\n"
 	"mov  r17, r16"				"\n"
 	"and  r17, r18"				"\n"
@@ -193,7 +195,7 @@ inline void writeGRB8(const uint8_t *grb)
 	"nop"						"\n"
 	"nop"						"\n"
 	"nop"						"\n"
-
+//b1
 	"out  %[port] , r18"		"\n"
 	"mov  r17, r16"				"\n"
 	"and  r17, r18"				"\n"
@@ -204,7 +206,7 @@ inline void writeGRB8(const uint8_t *grb)
 	"nop"						"\n"
 	"nop"						"\n"
 	"nop"						"\n"
-
+//b2
 	"out  %[port] , r18"		"\n"
 	"mov  r17, r16"				"\n"
 	"and  r17, r18"				"\n"
@@ -215,7 +217,7 @@ inline void writeGRB8(const uint8_t *grb)
 	"nop"						"\n"
 	"nop"						"\n"
 	"nop"						"\n"
-
+//b3
 	"out  %[port] , r18"		"\n"
 	"mov  r17, r16"				"\n"
 	"and  r17, r18"				"\n"
@@ -226,7 +228,7 @@ inline void writeGRB8(const uint8_t *grb)
 	"nop"						"\n"
 	"nop"						"\n"
 	"nop"						"\n"
-	
+//b4	
 	"out  %[port] , r18"		"\n"
 	"mov  r17, r16"				"\n"
 	"and  r17, r18"				"\n"
@@ -237,7 +239,7 @@ inline void writeGRB8(const uint8_t *grb)
 	"nop"						"\n"
 	"nop"						"\n"
 	"nop"						"\n"
-
+//b5
 	"out  %[port] , r18"		"\n"
 	"mov  r17, r16"				"\n"
 	"and  r17, r18"				"\n"
@@ -248,7 +250,7 @@ inline void writeGRB8(const uint8_t *grb)
 	"nop"						"\n"
 	"nop"						"\n"
 	"nop"						"\n"
-		
+//b6	
 //last two bits
 	"out  %[port] , r18"		"\n"
 	"mov  r17, r16"				"\n"
@@ -260,7 +262,7 @@ inline void writeGRB8(const uint8_t *grb)
 	"nop"						"\n"
 	"nop"						"\n"
 	"nop"						"\n"
-	
+//b7	
 	"out  %[port] , r18"		"\n"
 	"mov  r17, r16"				"\n"
 	"and  r17, r18"				"\n"
